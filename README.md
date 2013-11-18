@@ -8,3 +8,6 @@ npm install firebase
 
 FIREBASE_DB=[firebase db] node flashpaper.js [note]
 
+List notes:
+FIREBASE_DB=[firebase db] node flashpaper.js list
+

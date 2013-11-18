@@ -14,8 +14,16 @@ if (process.argv.length > 2) {
   var myRootRef   = new Firebase(url_db);
   note            = process.argv[2];
 
-  myRootRef.child('note').push({ "note" : note, "category" : "stuff" }, 
+  if (note === 'list') {
+    data_ref = myRootRef.child('note');
+    data_ref.on('value', function(snapshot) {
+      console.log(snapshot.val());
+      process.exit();
+    });
+  } else {
+    myRootRef.child('note').push({ "note" : note, "category" : "stuff" }, 
       function() { process.exit(); });
+  }
 } else {
   console.log('FIREBASE_DB=[your_db] node flashpaper.js [note]');
 }
